@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "ngx-azurevideo": {
+      "projectType": "library",
+      "root": "projects/ngx-azurevideo",
+      "sourceRoot": "projects/ngx-azurevideo/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-azurevideo/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-azurevideo/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-azurevideo/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-azurevideo/src/test.ts",
+            "tsConfig": "projects/ngx-azurevideo/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-azurevideo/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ngx-azurevideo"
 }
