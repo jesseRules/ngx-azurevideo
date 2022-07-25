@@ -5,7 +5,7 @@ declare var amp: any; // todo: use the amp d.ts
 @Component({
   selector: 'ngx-azurevideo',
   template: `
-    <video #video class="azuremediaplayer amp-flush-skin amp-big-play-centered" controls>
+    <video #video class="azuremediaplayer amp-default-skin amp-flush-skin amp-big-play-centered" controls>
       <p class="amp-no-js">
           To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video.
       </p>
@@ -24,6 +24,9 @@ export class NgxAzurevideoComponent implements OnInit {
   @Input() width: number = 500;
   @Input() height: number = 500;
   @Input() fluid: boolean = true;
+  @Input() ampVersion: string = '2.3.10';
+  @Input() skin: string = 'amp-flush'; 
+  // amp-default is other
 
   constructor() { }
 
@@ -31,11 +34,16 @@ export class NgxAzurevideoComponent implements OnInit {
     if (document.querySelector('#ngx-azurevideo')) { return; }
     const scriptTag = document.createElement('script');
     scriptTag.id = 'ngx-azurevideo';
-    scriptTag.src = '//amp.azure.net/libs/amp/2.3.10/azuremediaplayer.min.js';
+    scriptTag.src = `//amp.azure.net/libs/amp/${this.ampVersion}/azuremediaplayer.min.js`;
     scriptTag.onload = () => this.onLoadInit();
     const linkTag = document.createElement('link');
     linkTag.rel = 'stylesheet';
-    linkTag.href = '//amp.azure.net/libs/amp/2.3.10/skins/amp-flush/azuremediaplayer.min.css';
+    if (this.skin ==  'amp-flush'){
+      linkTag.href = `//amp.azure.net/libs/amp/${this.ampVersion}/skins/amp-flush/azuremediaplayer.min.css`;
+    } else {
+      linkTag.href = `//amp.azure.net/libs/amp/${this.ampVersion}/skins/amp-default/azuremediaplayer.min.css`;
+    }
+    
     document.body.appendChild(scriptTag);
     document.head.insertBefore(linkTag, document.head.firstChild);
   }

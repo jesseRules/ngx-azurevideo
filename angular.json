@@ -35,5 +35,7 @@
       }
     }
   },
-  "defaultProject": "ngx-azurevideo"
+  "cli": {
+    "analytics": false
+  }
 }
