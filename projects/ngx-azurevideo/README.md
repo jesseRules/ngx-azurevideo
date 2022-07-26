@@ -11,6 +11,10 @@ MSFT has a cool demo of the AMP player here [AmpDEMO](https://ampdemo.azureedge.
 
 [AMP License](https://amp.azure.net/libs/amp/latest/docs/license.html)
 
+The default layout looks like this:
+
+![NgxAzurevideo](https://i.imgur.com/stbxH8U.png)
+
 ## Usage
 
 ### Step 1: Install the `ngx-azurevideo` package
@@ -54,6 +58,7 @@ src="//amssamples.streaming.mediaservices.windows.net/3b970ae0-39d5-44bd-b3a3-31
 ```
 
 ## Input and Output
+I exposed multiple events for better monitoring and interactions.
 
 ```ts
   @Input() src: string = '';
@@ -77,10 +82,9 @@ src="//amssamples.streaming.mediaservices.windows.net/3b970ae0-39d5-44bd-b3a3-31
   @Output() error = new EventEmitter<any>();
 ```
 
-## Code scaffolding
+## Run Sample App
 
-Run `ng generate component component-name --project ngx-azurevideo` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-azurevideo`.
-> Note: Don't forget to add `--project ngx-azurevideo` or else it will be added to the default project in your `angular.json` file. 
+Run `ng serve` to launch the app on localhost:4200
 
 ## Build
 

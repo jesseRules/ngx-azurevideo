@@ -1,6 +1,12 @@
 {
   "name": "ngx-azurevideo",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Angular module for Azure Media Player",
+  "keywords": [
+    "azure media player",
+    "amp",
+    "angular amp"
+  ],
   "peerDependencies": {
     "@angular/common": "^14.1.0",
     "@angular/core": "^14.1.0"
@@ -10,7 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://dev.azure.com/UNMCiExcel/_git/NGX-AzureVideo"
+    "url": "https://github.com/jesseRules/ngx-azurevideo"
   },
-  "homepage": "https://dev.azure.com/UNMCiExcel/_git/NGX-AzureVideo"
+  "homepage": "https://github.com/jesseRules/ngx-azurevideo",
+  "license": "MIT",
+  "author": "Jesse Carlberg <jesse@jessecarlbergproduction.com> (https://jessecarlbergproduction.com)"
 }
