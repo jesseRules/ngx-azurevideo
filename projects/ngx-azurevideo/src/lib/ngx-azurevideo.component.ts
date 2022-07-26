@@ -20,7 +20,7 @@ declare var amp: any; // todo: use the amp d.ts
 })
 export class NgxAzurevideoComponent implements OnInit {
   @ViewChild('video')
-  videoPlayer!: any;
+  videoPlayer: any;
   @Input() src: string = '';
   @Input() controls: boolean = true;
   @Input() autoplay: boolean = true;
@@ -36,12 +36,14 @@ export class NgxAzurevideoComponent implements OnInit {
   @Output() playing = new EventEmitter();
   @Output() complete = new EventEmitter();
   @Output() timeupdate = new EventEmitter();
-  @Output() pause = new EventEmitter();
-  @Output() play = new EventEmitter();
+  @Output() pause = new EventEmitter<any>();
+  @Output() play = new EventEmitter<any>();
   @Output() resume = new EventEmitter();
   @Output() error = new EventEmitter();
+  parent: any;
+  currentTime: any;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     if (document.querySelector('#ngx-azurevideo')) {
@@ -64,11 +66,6 @@ export class NgxAzurevideoComponent implements OnInit {
     document.body.appendChild(scriptTag);
     document.head.insertBefore(linkTag, document.head.firstChild);
   }
-
-  eventHandler(event: any) {
-    console.log(event);
-  }
-
   private onLoadInit(): void {
     const config = {
       controls: this.controls !== false,
@@ -94,71 +91,79 @@ export class NgxAzurevideoComponent implements OnInit {
         ],
       },
     };
-    const component = amp(this.videoPlayer.nativeElement, config);
-    component.src([
+
+    this.videoPlayer.ngComponent = amp(this.videoPlayer?.nativeElement, config, function () {
+      //this is the ready function and will only execute after the player is loaded
+    });
+
+    this.videoPlayer.ngComponent.parent = this;
+
+    this.videoPlayer.ngComponent.src([
       {
         src: this.src,
         type: 'application/vnd.ms-sstr+xml',
       },
     ]);
-    this.videoPlayer.ngComponent = component;
-    this.videoPlayer.addEventListener('ended', this.videoEnded);
-    this.videoPlayer.addEventListener('seeking', this.videoSeeking);
-    this.videoPlayer.addEventListener('playing', this.videoPlaying);
-    this.videoPlayer.addEventListener('resume', this.resumePlaying);
-    this.videoPlayer.addEventListener('complete', this.completePlaying);
-    this.videoPlayer.addEventListener('timeupdate', this.videoTimeUpdate);
-    this.videoPlayer.addEventListener('pause', this.pausePlaying);
-    this.videoPlayer.addEventListener('play', this.videoPlay);
-    this.videoPlayer.addEventListener('error', this.videoError);
+
+    console.log(this.videoPlayer);
+
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.ended, this.videoEnded);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.seeking, this.videoSeeking);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.playing, this.videoPlaying);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.resume, this.resumePlaying);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.complete, this.completePlaying);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.timeupdate, this.videoTimeUpdate);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.pause, this.pausePlaying);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.play, this.videoPlay);
+    this.videoPlayer?.ngComponent?.addEventListener(amp.eventName.error, this.videoError);
   }
 
   videoEnded() {
-    this.videoPlayer.ngComponent.ended.emit(null);
+    this.parent.ended.emit(null);
   }
 
   videoSeeking() {
-    this.videoPlayer.ngComponent.seeking.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.seeking.emit(
+      this.currentTime()
     );
   }
 
   videoPlaying() {
-    this.videoPlayer.ngComponent.playing.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.playing.emit(
+      this.currentTime()
     );
   }
 
   resumePlaying() {
-    this.videoPlayer.ngComponent.resume.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.resume.emit(
+      this.currentTime()
     );
   }
 
   completePlaying() {
-    this.videoPlayer.ngComponent.resume.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.resume.emit(
+      this.currentTime()
     );
   }
 
   videoTimeUpdate() {
-    this.videoPlayer.ngComponent.timeupdate.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.timeupdate.emit(
+      this.currentTime()
     );
   }
 
   pausePlaying() {
-    this.videoPlayer.ngComponent.pause.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.pause.emit(
+      this.currentTime()
     );
   }
 
   videoPlay() {
-    this.videoPlayer.ngComponent.play.emit(
-      this.videoPlayer.ngComponent.currentTime()
+    this.parent.play.emit(
+      this.currentTime()
     );
   }
   videoError() {
-    this.videoPlayer.ngComponent.play.emit(this.videoPlayer.ngComponent.error);
+    this.parent.error.emit(this.error);
   }
 }
