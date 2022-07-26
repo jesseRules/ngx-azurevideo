@@ -1,6 +1,15 @@
 # NgxAzurevideo
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+
+## Overfiew
+This project uses [Azure Media Player (AMP)](http://amp.azure.net/libs/amp/latest/docs/index.html)
+
+To use this component, you must first [upload a video to media services, encode it, and get a streaming endpoint](https://docs.microsoft.com/en-us/azure/media-serviceslatest/manage-assets-quickstart).
+
+MSFT has a cool demo of the AMP player here [AmpDEMO](https://ampdemo.azureedge.net/azuremediaplayer.html)
+
+[AMP License](https://amp.azure.net/libs/amp/latest/docs/license.html)
 
 ## Code scaffolding
 
