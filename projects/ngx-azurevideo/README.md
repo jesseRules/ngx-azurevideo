@@ -2,7 +2,7 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
-## Overfiew
+## Overview
 This project uses [Azure Media Player (AMP)](http://amp.azure.net/libs/amp/latest/docs/index.html)
 
 To use this component, you must first [upload a video to media services, create a job, encode it, and get a streaming endpoint](https://docs.microsoft.com/en-us/azure/media-services/latest/manage-assets-quickstart).
@@ -15,7 +15,7 @@ The default layout looks like this:
 
 ![NgxAzurevideo](https://i.imgur.com/stbxH8U.png)
 
-## Usage
+## Using NgxAzurevideo
 
 ### Step 1: Install the `ngx-azurevideo` package
 
@@ -58,7 +58,7 @@ src="//amssamples.streaming.mediaservices.windows.net/3b970ae0-39d5-44bd-b3a3-31
 ```
 
 ## Input and Output
-I exposed multiple events for better monitoring and interactions.
+There are multiple exposed events for better monitoring and interactions.
 
 ```ts
   @Input() src: string = '';
