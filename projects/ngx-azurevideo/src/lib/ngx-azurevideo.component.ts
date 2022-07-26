@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
-import { EventEmitter } from 'stream';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 declare var amp: any; // todo: use the amp d.ts
 
