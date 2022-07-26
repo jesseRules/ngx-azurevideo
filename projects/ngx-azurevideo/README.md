@@ -5,7 +5,7 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 ## Overfiew
 This project uses [Azure Media Player (AMP)](http://amp.azure.net/libs/amp/latest/docs/index.html)
 
-To use this component, you must first [upload a video to media services, encode it, and get a streaming endpoint](https://docs.microsoft.com/en-us/azure/media-serviceslatest/manage-assets-quickstart).
+To use this component, you must first [upload a video to media services, create a job, encode it, and get a streaming endpoint](https://docs.microsoft.com/en-us/azure/media-services/latest/manage-assets-quickstart).
 
 MSFT has a cool demo of the AMP player here [AmpDEMO](https://ampdemo.azureedge.net/azuremediaplayer.html)
 
@@ -51,6 +51,30 @@ src="//amssamples.streaming.mediaservices.windows.net/3b970ae0-39d5-44bd-b3a3-31
 (play)="play($event)"
 (pause)="pause($event)">
 </ngx-azurevideo>
+```
+
+## Input and Output
+
+```ts
+  @Input() src: string = '';
+  @Input() controls: boolean = true;
+  @Input() autoplay: boolean = true;
+  @Input() poster: string = '';
+  @Input() width: number = 500;
+  @Input() height: number = 500;
+  @Input() fluid: boolean = true;
+  @Input() skin: string = 'amp-flush';
+                        // amp-default is other
+  @Input() playbackSpeedEnabled: boolean = true;
+  @Output() ended = new EventEmitter<any>();
+  @Output() seeking = new EventEmitter<any>();
+  @Output() playing = new EventEmitter<any>();
+  @Output() complete = new EventEmitter<any>();
+  @Output() timeupdate = new EventEmitter<any>();
+  @Output() pause = new EventEmitter<any>();
+  @Output() play = new EventEmitter<any>();
+  @Output() resume = new EventEmitter<any>();
+  @Output() error = new EventEmitter<any>();
 ```
 
 ## Code scaffolding

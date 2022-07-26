@@ -31,15 +31,15 @@ export class NgxAzurevideoComponent implements OnInit {
   @Input() skin: string = 'amp-flush';
   // amp-default is other
   @Input() playbackSpeedEnabled: boolean = true;
-  @Output() ended = new EventEmitter();
-  @Output() seeking = new EventEmitter();
-  @Output() playing = new EventEmitter();
-  @Output() complete = new EventEmitter();
-  @Output() timeupdate = new EventEmitter();
+  @Output() ended = new EventEmitter<any>();
+  @Output() seeking = new EventEmitter<any>();
+  @Output() playing = new EventEmitter<any>();
+  @Output() complete = new EventEmitter<any>();
+  @Output() timeupdate = new EventEmitter<any>();
   @Output() pause = new EventEmitter<any>();
   @Output() play = new EventEmitter<any>();
-  @Output() resume = new EventEmitter();
-  @Output() error = new EventEmitter();
+  @Output() resume = new EventEmitter<any>();
+  @Output() error = new EventEmitter<any>();
   parent: any;
   currentTime: any;
 
